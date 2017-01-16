@@ -17,5 +17,10 @@
 - name: be sure nfs is installed
   yum: name=nfs-utils state=installed
   notify:
+    - restart rpc
     - restart nfs
   tags: nfs
+
+- name: be sure set set -o vi
+  lineinfile: dest=/etc/profile line='set -o vi'
+  tags: custome

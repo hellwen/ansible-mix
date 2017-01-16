@@ -1,0 +1,11 @@
+#
+#About: This will install docker
+#
+---
+- hosts: k8s_node
+  remote_user: root
+  roles:
+  - { role: common, tags: [ 'firewall', 'ntp' ] }
+  - role: docker
+  - { role: docker2thinpool, pv: /dev/vdb }
+  - role: docker-registry-client-ca

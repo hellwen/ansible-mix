@@ -3,6 +3,8 @@
 - name: restart ntpd
   service: name=ntpd state=restarted
 
-- name: restart nfs
+- name: restart rpc
   service: name=rpcbind state=restarted enabled=true
+
+- name: restart nfs
   service: name=nfs-server state=restarted enabled=true

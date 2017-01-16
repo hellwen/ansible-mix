@@ -1,0 +1,5 @@
+# kubernetes manifest
+- name: Etcd yaml
+  template: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+  - { src: 'etcd.yaml.j2', dest: '/usr/local/kubernetes/manifests/etcd.yaml' }

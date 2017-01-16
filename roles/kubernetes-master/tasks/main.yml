@@ -1,0 +1,25 @@
+# create floder
+- name: kubernetes floder
+  file: path={{ item.path }} state=directory owner=kube group=kube mode=0755
+  with_items:
+  - { path: '/usr/local/kubernetes' }
+  - { path: '/usr/local/kubernetes/cni' }
+  - { path: '/usr/local/kubernetes/manifests' }
+  - { path: '/srv/kubernetes' }
+
+# kubernetes manifest
+- name: Kubernetes manifests
+  template: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+  - { src: 'kube-apiserver.yaml.j2', dest: '/usr/local/kubernetes/manifests/kube-apiserver.yaml' }
+  - { src: 'kube-controller-manager.yaml.j2', dest: '/usr/local/kubernetes/manifests/kube-controller-manager.yaml' }
+  - { src: 'kube-scheduler.yaml.j2', dest: '/usr/local/kubernetes/manifests/kube-scheduler.yaml' }
+
+# kubernetes certs
+- name: kubernetes certs
+  copy: src={{ item.src }} dest={{ item.dest }} owner=kube group=kube mode=0766
+  with_items:
+  - { src: 'certs/ca.crt', dest: '/srv/kubernetes/ca.crt' }
+  - { src: 'certs/basic_auth.csv', dest: '/srv/kubernetes/basic_auth.csv' }
+  - { src: 'certs/server.cert', dest: '/srv/kubernetes/server.cert' }
+  - { src: 'certs/server.key', dest: '/srv/kubernetes/server.key' }
