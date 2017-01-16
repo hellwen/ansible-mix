@@ -9,7 +9,7 @@ spec:
     - /bin/sh
     - -c
     - /usr/local/bin/kube-apiserver
-      --apiserver-count=2
+      --apiserver-count=3
       --insecure-bind-address={{ api_insecure_address }}
       --insecure-port={{ api_insecure_port }}
       --bind-address={{ api_address }}
