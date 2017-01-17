@@ -15,7 +15,6 @@
     - etcd_prefix: /flannel/network
   - role: kubernetes
     vars:
-    - hostname: k8s-master-1
     - kube_master: 192.168.61.2
   - role: kubernetes-etcd
     vars:
