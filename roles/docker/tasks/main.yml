@@ -6,7 +6,7 @@
   replace:
     dest: /etc/sysconfig/docker
     regexp: '(\s+)*--log-driver=journald*'
-    replace: '\1--log-driver=json-file'
+    replace: '\1--log-driver=json-file --log-opt max-size=10m --log-opt max-file=3'
     backup: yes
 
 - name: Start the docker service
