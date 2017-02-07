@@ -8,5 +8,5 @@
   roles:
   - role: flannel
     vars:
-      etcd_endpoints: "http://192.168.72.128:2379,http://192.168.72.63:2379,http://192.168.72.157:2379"
-      etcd_prefix: /flannel/network
+    - etcd_endpoints: http://192.168.72.128:2379,http://192.168.72.63:2379,http://192.168.72.233:2379
+    - etcd_prefix: /flannel/network
