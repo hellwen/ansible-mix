@@ -16,11 +16,21 @@
   - { path: '/usr/local/kubernetes/manifests' }
 
 # kubernetes bin 
-- name: Copy kubelet
-  copy: src={{ item.src }} dest={{ item.dest }} owner=kube group=kube mode=0766
+#- name: Copy kubelet
+#  copy: src={{ item.src }} dest={{ item.dest }} owner=kube group=kube mode=0766
+#  with_items:
+#  - { src: kubelet, dest: /usr/local/bin/kubelet }
+#  - { src: kube-proxy, dest: /usr/local/bin/kube-proxy }
+
+# https://storage.googleapis.com/kubernetes-release/release/v1.5.2/bin/linux/amd64/kubectl
+- name: Download kubelet
+  get_url:
+    url: https://storage.googleapis.com/kubernetes-release/release/{{ kube_version }}/bin/linux/amd64/{{ item.name }}
+    dest: /usr/local/bin/{{ item.name }}
+    mode: 0555
   with_items:
-  - { src: kubelet, dest: /usr/local/bin/kubelet }
-  - { src: kube-proxy, dest: /usr/local/bin/kube-proxy }
+  - { name: kubelet }
+  - { name: kube-proxy }
 
 # kubernetes config
 - name: Kubelet config
