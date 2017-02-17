@@ -1,0 +1,6 @@
+- name: copy mongo 
+  copy: src=mongodb-linux-x86_64-rhel70-3.2.10   dest=/data/mongodb
+- name: provides mongod.conf
+  template: src=mongod.conf  dest=/data/mongod.conf
+- name: provides mongodb_start.sh
+  copy: src=mongodb_start.sh dest=/data/mongodb 

@@ -1,0 +1,11 @@
+- hosts: 192.168.70.51
+  remote_user: root
+  vars: 
+  - user: "mongos"
+  tasks: 
+    - name: create user mongo
+      user: name= "{{ user }}"
+#  tasks:
+#    - name: copy file to client
+ 
+    
