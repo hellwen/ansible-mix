@@ -3,7 +3,7 @@
   service: name=docker state=stopped
 
 - name: Remove docker vg
-  lvg: vg=docker state=absent
+  lvg: vg=docker state=absent force=yes
 
 - name: Remove docker
   yum: name=docker state=removed

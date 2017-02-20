@@ -1,0 +1,14 @@
+#
+#About: This will install docker
+#
+---
+- hosts: k8s_node
+  remote_user: root
+  roles:
+  - { role: common, tags: [ 'firewall', 'ntp', 'nfs', 'custome'] }
+  - role: docker
+  - { role: docker2thinpool, pv: /dev/vdb }
+  - role: docker-registry-client-ca
+  - role: kubernetes-kubelet
+    vars:
+    - kube_master: 192.168.61.2

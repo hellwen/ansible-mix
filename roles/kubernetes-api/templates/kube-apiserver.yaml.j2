@@ -29,18 +29,18 @@ spec:
       httpGet:
         host: 127.0.0.1
         path: /healthz
-        port: 6550
+        port: {{ api_insecure_port }}
         scheme: HTTP
       initialDelaySeconds: 15
       timeoutSeconds: 15
     name: kube-apiserver
     ports:
-    - containerPort: 6450
-      hostPort: 6450
+    - containerPort: {{ api_port }}
+      hostPort: {{ api_port }}
       name: https
       protocol: TCP
-    - containerPort: 6550
-      hostPort: 6550
+    - containerPort: {{ api_insecure_port }}
+      hostPort: {{ api_insecure_port }}
       name: local
       protocol: TCP
     resources:

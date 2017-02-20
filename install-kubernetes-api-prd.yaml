@@ -1,0 +1,10 @@
+#
+#About: This will install docker
+#
+---
+- hosts: k8s_node
+  remote_user: root
+  roles:
+  - role: kubernetes-api
+    vars:
+    - etcd_servers: http://192.168.10.249:2379,http://192.168.10.187:2379,http://192.168.10.2:2379

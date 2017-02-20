@@ -1,0 +1,6 @@
+---
+- name: Be sure flannel service stopped
+  service: name=flanneld state=stopped
+
+- name: Remove flannel
+  yum: name=flannel state=removed

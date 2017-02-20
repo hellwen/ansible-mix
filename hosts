@@ -1,2 +1,4 @@
 [k8s_node]
-VM_61_2_centos ansible_host=192.168.61.2
+k8s_m1 ansible_host=192.168.10.249
+k8s_m2 ansible_host=192.168.10.187
+k8s_m3 ansible_host=192.168.10.2

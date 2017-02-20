@@ -1,0 +1,12 @@
+#
+#About: This will install docker
+#
+---
+- hosts: k8s_node
+  remote_user: root
+  roles:
+  - role: kubernetes-etcd
+    vars:
+    - etcd_cluster: k8s_m1=http://192.168.10.249:2380,k8s_m2=http://192.168.10.187:2380,k8s_m3=http://192.168.10.2:2380
+    # - etcd_cluster_state: existing
+    - etcd_cluster_state: new
