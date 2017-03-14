@@ -21,6 +21,7 @@ spec:
       --tls-private-key-file=/srv/kubernetes/server.key
       --service-cluster-ip-range={{ cluster_ip_range }}
       --service-node-port-range=1-65535
+      --admission-control=NamespaceLifecycle,LimitRanger,ServiceAccount,DefaultStorageClass,ResourceQuota
       --v=2
       --allow-privileged=True
       1>>/var/log/kube-apiserver.log 2>&1
