@@ -1,4 +1,4 @@
 [k8s_node]
-k8s_m1 ansible_host=192.168.10.249
-k8s_m2 ansible_host=192.168.10.187
-k8s_m3 ansible_host=192.168.10.2
+master1 ansible_ssh_host=118.89.51.145 ansible_ssh_user=root
+node1 ansible_ssh_host=192.168.10.65 ansible_ssh_user=root
+node2 ansible_ssh_host=192.168.10.30 ansible_ssh_user=root
