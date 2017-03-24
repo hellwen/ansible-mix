@@ -1,0 +1,36 @@
+---
+- name: Stop the docker service
+  service: name=docker state=stopped
+  when: ansible_distribution in ["CentOS"]
+  tags: docker-thinpool
+
+- name: Delete the docker container files
+  file: path=/var/lib/docker state=absent
+  when: ansible_distribution in ["CentOS"]
+  tags: docker-thinpool
+
+- name: Create docker vg
+  lvg: vg=docker pvs={{ pv }}
+  when: ansible_distribution in ["CentOS"]
+  tags: docker-thinpool
+
+- name: Setup docker devicemapper
+  lineinfile: dest=/etc/sysconfig/docker-storage-setup line="STORAGE_DRIVER=devicemapper"
+  when: ansible_distribution in ["CentOS"]
+  tags: docker-thinpool
+  
+- name: Setup docker vg
+  lineinfile: dest=/etc/sysconfig/docker-storage-setup line="VG=docker"
+  when: ansible_distribution in ["CentOS"]
+  tags: docker-thinpool
+
+- name: Setup docker use_deferred_removal
+  lineinfile: dest=/etc/sysconfig/docker-storage-setup line='EXTRA_DOCKER_STORAGE_OPTIONS=" --storage-opt dm.use_deferred_removal=true"'
+  when: ansible_distribution in ["CentOS"]
+  tags: docker-thinpool
+
+- name: Setup docker storage
+  shell: docker-storage-setup
+  when: ansible_distribution in ["CentOS"]
+  tags: docker-thinpool
+  notify: restart docker with daemon reload

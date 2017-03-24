@@ -1,2 +1,5 @@
 - name: restart docker
   service: name=docker state=restarted
+
+- name: restart docker with daemon reload
+  service: name=docker state=restarted daemon_reload=yes

@@ -1,0 +1,9 @@
+---
+- name: Create the ca floder
+  file: name=/etc/docker/certs.d/k8s-registry.zeusis.com:32000 state=directory
+  tags: docker-registry-ca
+
+- name: Copy the ca.crt to remote host
+  copy: src=ca.crt dest=/etc/docker/certs.d/k8s-registry.zeusis.com:32000/ca.crt mode=0644
+  notify: restart docker
+  tags: docker-registry-ca

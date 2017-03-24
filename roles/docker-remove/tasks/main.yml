@@ -1,9 +1,12 @@
 ---
 - name: Be sure docker service stopped
   service: name=docker state=stopped
+  tags: docker-remove
 
 - name: Remove docker vg
   lvg: vg=docker state=absent force=yes
+  tags: docker-remove
 
 - name: Remove docker
   yum: name=docker state=removed
+  tags: docker-remove

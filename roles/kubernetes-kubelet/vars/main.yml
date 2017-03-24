@@ -1,6 +1,0 @@
-hostip: "{{ ansible_default_ipv4.address }}"
-hostname: "{{ inventory_hostname }}"
-kube_version: "v1.5.2"
-kube_port: "2450"
-cluster_dns_ip: "182.1.0.10"
-cluster_domain: "cluster.local"
