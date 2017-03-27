@@ -8,3 +8,4 @@ kube-proxy
 ca.crt
 *.retry
 hosts
+inventory/inventory.ini
